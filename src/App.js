@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header title="Grosery List"/>
+      <Header title="D' CheckList"/>
       <AddItem 
       handleSubmit={handleSubmit}
       current={current}
