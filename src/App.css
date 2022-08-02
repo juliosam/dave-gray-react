@@ -6,6 +6,9 @@
 
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .header{
@@ -14,7 +17,57 @@
   text-align: start;
   padding: 20px;
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.addForm{ display: flex; margin-bottom: 10px;}
+
+.addForm label{display: none;}
+
+.addForm input{
+  flex-grow: 1;
+  height: 48px;
+  margin-left: 15px;
+  font-size: 20px;
+  border-radius: 8px;
+  padding-left: 20px;
+}
+
+.addForm button{
+  height: 48px;
+  width: 48px;
+  color: blue;
+  background-color: lightskyblue;
+  border: none;
+  border-radius: 8px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15px;
+}
+
+.addForm button:hover,
+.addForm button:focus {
+  background-color: aqua;
+}
+
+.searchForm{display: flex; padding: 0 15px; margin-bottom: 10px;}
+
+.searchForm label{display: none;}
+
+.searchForm input{
+  flex-grow: 1; 
+  height: 48px;
+  font-size: 20px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding-left: 20px;
+}
+
+main{
+  padding-bottom: 68px;
+  flex-grow: 1;
 }
 
 .item-container{
@@ -47,7 +100,6 @@
 }
 
 .footer{
-  position: absolute;
   bottom: 0;
   width: 100%;
   background-color: blue;
@@ -55,6 +107,7 @@
   font-size: 14px;
   height: 68px;
   padding-top: 10px;
+  position: fixed;
 }
 
 .item-count{
