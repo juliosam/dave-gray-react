@@ -1,18 +1,23 @@
 {
-  "listOfGrocerys":[  
+  "listOfGrocerys": [
     {
       "id": 1,
       "product": "Almonds, unsalted, in the blue bag",
-      "checked": false
-    }, 
-    {
-      "id": 2,
-      "product": "Pizza",
-      "checked": false
+      "checked": true
     },
     {
       "id": 3,
       "product": "Bread",
+      "checked": true
+    },
+    {
+      "id": 4,
+      "product": "tostitos",
+      "checked": false
+    },
+    {
+      "id": 5,
+      "product": "lechita",
       "checked": false
     }
   ]

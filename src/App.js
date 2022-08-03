@@ -5,9 +5,10 @@ import Header from './components/header';
 import AddItem from './components/addItem';
 import SearchItem from './components/searchItem';
 import { useEffect, useState } from 'react';
+import apiRequest from './components/apiRequest';
 
 function App() {
-  const API_URL = 'http://localhost:3500/listOfGrocerys'
+  const API_URL = 'https://juliosam.github.io/dave-gray-react/'
   
   const [listOfGrocerys, setListOfGrocerys] = useState([]);
   const [current, setCurrent] = useState('');
@@ -22,18 +23,31 @@ function App() {
         if(!response.ok) throw Error('Did not receive expected data')
         const listItems = await response.json();
         setListOfGrocerys(listItems)
-      }catch(err){ setFetchError(err.message)}
-      finally{setIsLoading(false)}
+        setFetchError(null)
+      } catch(err){ 
+        setFetchError(err.message);
+      } finally{
+        setIsLoading(false)
+      }
     }
-    setTimeout(()=>{fetchItems()},2000)
+    setTimeout(()=>{(async () => await fetchItems())()},2000)
     
   },[])
 
-  const addItem = (item) =>{
+  const addItem = async (item) =>{
     const key = listOfGrocerys.length? listOfGrocerys[listOfGrocerys.length - 1].id + 1 : 1;
     const newItem = {id:key, product:item, checked: false};
     const newList = [...listOfGrocerys, newItem];
     setListOfGrocerys(newList)
+    const postOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(newItem)
+    }
+    const result = await apiRequest(API_URL, postOptions);
+    if (result) setFetchError(result)
   }
 
   const handleSubmit = (e) =>{
@@ -43,15 +57,34 @@ function App() {
     setCurrent('')
   }
 
-  const handleCheck = (id) =>{
+  const handleCheck = async (id) =>{
     const listItems = listOfGrocerys.map((item) => item.id === id ? {...item,
-      checked: !item.checked}: item)
-    setListOfGrocerys(listItems)
+      checked: !item.checked}: item);
+    setListOfGrocerys(listItems);
+
+    const myItem = listItems.filter(item => item.id === id);
+    const updateOptions = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({checked: myItem[0].checked})
+    }
+    const reqUrl = `${API_URL}/${id}`
+    const result = await apiRequest(reqUrl, updateOptions);
+    if (result) setFetchError(result)
   }
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     const listItems = listOfGrocerys.filter((item) => item.id !== id)
     setListOfGrocerys(listItems)
+
+    const deleteOptions = {
+      method: 'DELETE'
+    }
+    const reqUrl = `${API_URL}/${id}`
+    const result = await apiRequest(reqUrl, deleteOptions);
+    if (result) setFetchError(result)
   }
 
   return (
