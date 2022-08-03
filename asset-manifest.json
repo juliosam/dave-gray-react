@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/dave-gray-react/static/css/main.14c398f7.css",
-    "main.js": "/dave-gray-react/static/js/main.bc5bfe0d.js",
+    "main.js": "/dave-gray-react/static/js/main.14a09c8b.js",
     "index.html": "/dave-gray-react/index.html",
     "main.14c398f7.css.map": "/dave-gray-react/static/css/main.14c398f7.css.map",
-    "main.bc5bfe0d.js.map": "/dave-gray-react/static/js/main.bc5bfe0d.js.map"
+    "main.14a09c8b.js.map": "/dave-gray-react/static/js/main.14a09c8b.js.map"
   },
   "entrypoints": [
     "static/css/main.14c398f7.css",
-    "static/js/main.bc5bfe0d.js"
+    "static/js/main.14a09c8b.js"
   ]
 }
